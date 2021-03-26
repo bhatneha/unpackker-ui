@@ -45,7 +45,8 @@ export default {
     dropzoneOptions: {
       url: 'http://localhost:8080/v1/upload',
       maxFilesize: 30,
-      addRemoveLinks: false
+      addRemoveLinks: false,
+      uploadMultiple: false
     }
   }),
   methods: {
@@ -61,17 +62,23 @@ export default {
       const options = {
         method: 'POST',
         data: JSON.stringify({
-          assetpath: this.resp.assetpath,
-          name: this.resp.name,
-          assetversion: this.resp.assetversion
+          packdata: {
+            assetpath: this.resp.assetpath,
+            name: this.resp.name,
+            assetversion: this.resp.assetversion
+          }
         })
       }
+      this.$Progress.start()
       axios(url, options)
         .then((response) => {
+          this.$Progress.finish()
           if (response.status === 200) {
-            this.alertprops.updatesuccess = true
-            this.alertprops.successmessage = (response.data).response
+            this.$router.push({ name: 'Download', params: { packedassetpath: (response.data).response } })
+            // this.alertprops.updatesuccess = true
+            // this.alertprops.successmessage = (response.data).response
           } else {
+            this.$Progress.fail()
             this.alertprops.updatefail = true
             this.alertprops.failuremessage = response
           }

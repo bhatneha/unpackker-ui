@@ -3,6 +3,7 @@
     <Navigation/>
     <div id="body" class="container">
     <router-view/>
+    <vue-progress-bar></vue-progress-bar>
     </div>
     <Footer/>
   </div>

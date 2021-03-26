@@ -5,6 +5,7 @@ import signup from '@/components/signup'
 import home from '@/components/home'
 import packker from '@/components/packker'
 import unpackker from '@/components/unpackker'
+import download from '@/components/download'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/unpackker',
     name: 'Unpackker',
     component: unpackker
+  },
+  {
+    path: '/download',
+    name: 'Download',
+    component: download
   }
 ]
 
