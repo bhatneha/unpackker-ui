@@ -2,7 +2,7 @@
     <footer class="footer">
         <div class="copyright text-center align-text-bottom">
             &copy; {{ new Date().getFullYear() }}
-            <a href="https://github.com/bhatneha/compose" target="_blank">Unpackker</a>, Happy packing and unpacking.
+            <a href="https://github.com/bhatneha/unpackker-ui" target="_blank">Unpackker</a>, Happy packing and unpacking.
         </div>
     </footer>
 </template>

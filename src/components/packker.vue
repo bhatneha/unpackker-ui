@@ -5,7 +5,6 @@
             <vue-dropzone ref="myVueDropzone" @vdropzone-complete="afterComplete" id="customdropzone" :options="dropzoneOptions" :useCustomSlot="true" :duplicateCheck="true" @vdropzone-duplicate-file="duplicatecheck">
               Drop your asset here or click to upload !</vue-dropzone>
             <b-alert variant="danger" dismissible :show="duplicate.dups" @dismissed="duplicate.dups=false" id="alert"> {{ this.duplicate.dup }} </b-alert>
-            <b-alert variant="success" dismissible :show="alertprops.updatesuccess" @dismissed="alertprops.updatesuccess=false" id="alert">{{ this.alertprops.successmessage }}</b-alert>
             <b-alert variant="success" dismissible :show="alertprops.updatefail" @dismissed="alertprops.updatefail=false" id="alert">{{ this.alertprops.failuremessage }}</b-alert>
             <b-alert variant="danger" dismissible :show="deletealertprops.delete" @dismissed="deletealertprops.delete=false" id="alert"> {{ this.deletealertprops.del}}</b-alert>
             <div class="text-center" id="butn">
@@ -33,9 +32,7 @@ export default {
     resp: {},
     packresp: null,
     alertprops: {
-      updatesuccess: false,
       updatefail: false,
-      successmessage: '',
       failuremessage: ''
     },
     deletealertprops: {
@@ -43,7 +40,7 @@ export default {
       del: ''
     },
     dropzoneOptions: {
-      url: 'http://localhost:8080/v1/upload',
+      url: process.env.VUE_APP_ROOT_API + '/v1/upload',
       maxFilesize: 30,
       addRemoveLinks: false,
       uploadMultiple: false
@@ -58,7 +55,7 @@ export default {
       this.resp = JSON.parse(response.xhr.response)
     },
     pack: function () {
-      const url = 'http://localhost:8080/v1/packker'
+      const url = process.env.VUE_APP_ROOT_API + '/v1/packker'
       const options = {
         method: 'POST',
         data: JSON.stringify({
@@ -75,8 +72,6 @@ export default {
           this.$Progress.finish()
           if (response.status === 200) {
             this.$router.push({ name: 'Download', params: { packedassetpath: (response.data).response } })
-            // this.alertprops.updatesuccess = true
-            // this.alertprops.successmessage = (response.data).response
           } else {
             this.$Progress.fail()
             this.alertprops.updatefail = true
@@ -85,7 +80,7 @@ export default {
         })
     },
     removeThisFile: function () {
-      const url = 'http://localhost:8080/v1/delete'
+      const url = process.env.VUE_APP_ROOT_API + '/delete'
       const options = {
         method: 'DELETE',
         data: JSON.stringify({
