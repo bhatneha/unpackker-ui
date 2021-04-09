@@ -1,4 +1,4 @@
-PROJECT_NAME?=unpackker_ui
+PROJECT_NAME?=unpackker-ui
 APP_DIR?=$$(git rev-parse --show-toplevel)
 VERSION?=0.0.1
 
