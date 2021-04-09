@@ -1,5 +1,7 @@
 # unpackker-ui
 
+![unpackker-ui](asset/unpackker-ui-demo.gif)
+
 ## Project setup
 ```
 npm install
