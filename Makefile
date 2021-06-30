@@ -22,7 +22,7 @@ dockerise: docker.lint app.lint ## Containerise the application.
 	docker build -t ${DOCKER_USER}/${PROJECT_NAME}:${VERSION} .
 
 docker.lint: ##Lints Dockerfile.
-	docker run --rm -v ${APP_DIR}:/app -w /app hadolint/hadolint:latest-alpine hadolint Dockerfile
+	hadolint Dockerfile
 
 docker.publish.image: ## Publisies the image to the registered docker registry.
 	docker push ${DOCKER_USER}/${PROJECT_NAME}:${VERSION}
