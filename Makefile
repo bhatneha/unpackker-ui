@@ -21,7 +21,7 @@ app.run: app.lint ## Runs the command and serves the request.
 dockerise: docker.lint app.lint ## Containerise the application.
 	docker build -t ${DOCKER_USER}/${PROJECT_NAME}:${VERSION} .
 
-docker.lint: ##Lints Dockerfile.
+docker.lint: ## Lints Dockerfile.
 	hadolint Dockerfile
 
 docker.publish.image: ## Publisies the image to the registered docker registry.
