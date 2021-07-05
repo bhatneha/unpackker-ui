@@ -9,7 +9,7 @@ help: ## Prints help (only for targets with comments).
 dependencies.install: ## Installs the dependencies listed.
 	npm install
 
-app.lint: ## Lints application for errors.
+app.lint: dependencies.install ## Lints application for errors.
 	npm run lint
 
 app.build: ## Builds app for production.

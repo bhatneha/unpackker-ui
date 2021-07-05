@@ -4,7 +4,6 @@ pipeline {
         stage ('Lint') {
             steps {
                 echo 'Linting application'
-                sh 'make dependencies.install'
                 sh 'make app.lint'
                 sh 'make docker.lint'
             }
